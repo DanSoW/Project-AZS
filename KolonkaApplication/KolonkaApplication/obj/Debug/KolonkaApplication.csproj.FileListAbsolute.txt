@@ -1,0 +1,13 @@
+C:\Server\KolonkaApplication\KolonkaApplication\bin\Debug\KolonkaApplication.exe.config
+C:\Server\KolonkaApplication\KolonkaApplication\bin\Debug\KolonkaApplication.exe
+C:\Server\KolonkaApplication\KolonkaApplication\bin\Debug\KolonkaApplication.pdb
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.csprojAssemblyReference.cache
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.Form1.resources
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.Properties.Resources.resources
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.csproj.GenerateResource.cache
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.csproj.CoreCompileInputs.cache
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.exe
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.pdb
+C:\Server\KolonkaApplication\KolonkaApplication\bin\Debug\Newtonsoft.Json.dll
+C:\Server\KolonkaApplication\KolonkaApplication\bin\Debug\Newtonsoft.Json.xml
+C:\Server\KolonkaApplication\KolonkaApplication\obj\Debug\KolonkaApplication.csproj.CopyComplete

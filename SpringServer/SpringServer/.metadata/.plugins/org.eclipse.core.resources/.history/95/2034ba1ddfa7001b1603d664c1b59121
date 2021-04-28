@@ -1,0 +1,29 @@
+package com.server.program;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class UnitTest {
+
+	@Test
+	void testInsertDataAZS() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetDataElementAZSById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testInsertDataOil() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetDataElementOilAll() {
+		fail("Not yet implemented");
+	}
+
+}

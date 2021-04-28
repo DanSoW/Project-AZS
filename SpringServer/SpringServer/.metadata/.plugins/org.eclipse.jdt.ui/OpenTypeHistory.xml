@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+    <typeInfo handle="=server/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.server.database.dao{DataElementDaoImpl.java[DataElementDaoImpl" modifiers="1" timestamp="1619585588213"/>
+</typeInfoHistroy>

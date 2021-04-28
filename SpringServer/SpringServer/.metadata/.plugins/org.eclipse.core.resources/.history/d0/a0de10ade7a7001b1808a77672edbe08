@@ -1,0 +1,39 @@
+package com.server.program;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.server.database.elements.DataElementAZS;
+import com.server.database.services.DataElementService;
+
+class UnitTest {
+
+	private final DataElementService dataService;
+	
+	@Autowired
+	public UnitTest(DataElementService data) {
+		this.dataService = data;
+	}
+	
+	@Test
+	void testInsertDataAZS() {
+	}
+
+	/*@Test
+	void testGetDataElementAZSById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testInsertDataOil() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetDataElementOilAll() {
+		fail("Not yet implemented");
+	}*/
+
+}

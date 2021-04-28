@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.server.program.DataElementDaoImplWagons"/>
-    <fullyQualifiedTypeName name="com.server.program.DataElementDaoWagons"/>
-    <fullyQualifiedTypeName name="com.server.services.DataElementServiceWagons"/>
-    <fullyQualifiedTypeName name="com.server.program.DataElementWagons"/>
     <fullyQualifiedTypeName name="com.server.program.DataElementRequestWagons"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="org.springframework.jdbc.core.PreparedStatementCallback"/>
@@ -41,17 +37,10 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="com.sun.el.parser.ParseException"/>
     <fullyQualifiedTypeName name="com.service.database.mappers.DataElementMapperOil"/>
-    <fullyQualifiedTypeName name="com.sun.istack.NotNull"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
-    <fullyQualifiedTypeName name="javax.swing.tree.RowMapper"/>
-    <fullyQualifiedTypeName name="org.springframework.jdbc.core.RowMapper"/>
-    <fullyQualifiedTypeName name="com.server.database.dao.DataElementDaoImpl"/>
     <fullyQualifiedTypeName name="com.service.database.mappers.DataElementMapperAZS"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="com.server.database.services.DataElementServiceImpl"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.server.database.requests.DataElementRequestAZS"/>
-    <fullyQualifiedTypeName name="com.server.database.elements.DataElementAZS"/>
     <fullyQualifiedTypeName name="com.server.database.elements.DataElementOil"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
@@ -60,4 +49,15 @@
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.EnableAutoConfiguration"/>
     <fullyQualifiedTypeName name="com.server.database.requests.DataRequest"/>
     <fullyQualifiedTypeName name="com.server.database.elements.DataElementAZSFuel"/>
+    <fullyQualifiedTypeName name="com.sun.istack.NotNull"/>
+    <fullyQualifiedTypeName name="javax.swing.tree.RowMapper"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.RowMapper"/>
+    <fullyQualifiedTypeName name="com.server.database.mappers.DataElementMapperCamera"/>
+    <fullyQualifiedTypeName name="com.server.database.requests.DataElementCameraRequest"/>
+    <fullyQualifiedTypeName name="com.server.database.elements.DataElementCamera"/>
+    <fullyQualifiedTypeName name="com.server.database.dao.DataElementDaoImpl"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.server.database.dao.DataElementDao"/>
+    <fullyQualifiedTypeName name="com.server.database.elements.DataElementAZS"/>
 </qualifiedTypeNameHistroy>

@@ -22,6 +22,8 @@ import com.server.database.elements.DataElementCamera;
 import com.server.database.elements.DataElementOil;
 import com.server.database.requests.DataElementCameraRequest;
 import com.server.database.requests.DataElementRequestAZS;
+import com.server.database.requests.DataElementRequestOil;
+import com.server.database.requests.DataElementRequestOilUpdate;
 import com.server.database.services.DataElementServiceImpl;
 
 @RestController
@@ -131,6 +133,21 @@ public class DatabaseController {
 		return dataService.getDataElementOilAllById(id);
 	}
 	
+	@PostMapping(value = "/updateDataOil")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void updateDataElementOil(@Valid @RequestBody DataElementRequestOilUpdate request) {
+		dataService.updateDataOil(
+				new DataElementOil(request.getName(), request.getPrice(), request.getAmountOfFuel(), request.getVariable()));
+	}
+	
+	@PostMapping(value = "/updateDataOil/all")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void updateDataElementOilAll(@Valid @RequestBody List<DataElementRequestOilUpdate> request) {
+		for(int i = 0; i < request.size(); i++) {
+			dataService.updateDataOil(
+					new DataElementOil(request.get(i).getName(), request.get(i).getPrice(), request.get(i).getAmountOfFuel(), request.get(i).getVariable()));
+		}
+	}
 	
 	
 	//Маршрутизация для модуля "Камера"
