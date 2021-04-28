@@ -62,7 +62,7 @@ public class DataElementDaoImpl implements DataElementDao {
 	public static final String NAME_ATTRIBUT_IMAGE = "Image";
 	
 	private static final String SQL_COMMAND_CREATE_CAMERA_TABLE = "CREATE TABLE IF NOT EXISTS " + NAME_TABLE_CAMERA + " ("
-			+ NAME_ATTRIBUT_DATE + " DATE, " + NAME_ATTRIBUT_RECOGNIZE + " BOOL, " + NAME_ATTRIBUT_NUMBER + " VARCHAR(20) PRIMARY KEY, "
+			+ NAME_ATTRIBUT_DATE + " DATE, " + NAME_ATTRIBUT_RECOGNIZE + " BOOL, " + NAME_ATTRIBUT_NUMBER + " NVARCHAR(20) PRIMARY KEY, "
 			+ NAME_ATTRIBUT_IMAGE + " VARCHAR(255));";
 	
 	private static final String SQL_COMMAND_INSERT_CAMERA = "INSERT INTO " + NAME_TABLE_CAMERA + " (" +
@@ -217,7 +217,7 @@ public class DataElementDaoImpl implements DataElementDao {
 	}
 
 	@Override
-	public void updateDataElementCamera(DataElementCamera data) {
+	public void updateDataElementCamera(DataElementCamera data){
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue(NAME_ATTRIBUT_DATE, data.getDate());
 		params.addValue(NAME_ATTRIBUT_RECOGNIZE, data.isRecognize());

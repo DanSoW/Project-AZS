@@ -140,13 +140,14 @@ namespace ApplicationCamera
             if (index >= 0)
             {
                 string[] text = filePath[currentIndexImage].Split(new char[] { '\\' });
-                dataGridView1.Rows[index].Cells[2].Value = text[text.Length - 1].Split(new char[] { '.' })[0];
+                if(dataGridView1.Rows[index].Cells[2].Value.ToString().Length == 0)
+                    dataGridView1.Rows[index].Cells[2].Value = text[text.Length - 1].Split(new char[] { '.' })[0];
                 dataGridView1.Rows[index].Cells[3].Value = text[text.Length - 1];
                 addDataElementCameraInDataBase(new DataElementCamera(
                     dataGridView1.Rows[index].Cells[0].Value.ToString(),
                     Boolean.Parse(dataGridView1.Rows[index].Cells[1].Value.ToString().ToLower()),
                     dataGridView1.Rows[index].Cells[2].Value.ToString(),
-                    dataGridView1.Rows[index].Cells[3].Value.ToString()));
+                    textBox1.Text));
             }
         }
 
@@ -160,6 +161,32 @@ namespace ApplicationCamera
             pictureBox1.Image = Image.FromFile(filePath[currentIndexImage]);
             string[] text = filePath[currentIndexImage].Split(new char[] { '\\' });
             textBox1.Text = text[text.Length - 1];
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var url = "http://localhost:8080/getDataCamera/all";
+
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+
+
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            string result;
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                 result = streamReader.ReadToEnd();
+            }
+
+            List<DataElementCamera> data = JsonConvert.DeserializeObject <List<DataElementCamera>>(result);
+
+            dataGridView1.Rows.Clear();
+
+            for(int i = 0; i < data.Count; i++)
+            {
+                dataGridView1.Rows.Add(data[i].date, data[i].recognize, data[i].number, data[i].image);
+            }
+
+            Console.WriteLine(httpResponse.StatusCode);
         }
     }
 
