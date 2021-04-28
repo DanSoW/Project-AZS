@@ -3,9 +3,9 @@ package com.server.settings;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-//************************************************************
+//***********************************************************
 //Настройки подключения к базе данных
-//************************************************************
+//***********************************************************
 
 @Component
 @ConfigurationProperties(prefix = "spring.datasource")

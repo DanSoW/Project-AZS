@@ -1,0 +1,21 @@
+package com.server.database.requests;
+
+import com.sun.istack.NotNull;
+
+public class DataElementCameraRequest {
+	
+	@NotNull
+	private String date;
+	
+	@NotNull
+	private Boolean recognize;
+	
+	@NotNull
+	private String number;
+	
+	@NotNull
+	private String image;
+	
+	
+
+}

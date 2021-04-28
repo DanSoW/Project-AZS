@@ -1,0 +1,22 @@
+package com.server.database.mappers;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.tree.RowMapper;
+
+import com.server.database.dao.DataElementDaoImpl;
+import com.server.database.elements.DataElementOil;
+
+@Component
+public class DataElementMapperCamera implements RowMapper<DataElementCamera>{
+
+	@Override
+	public DataElementOil mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new DataElementOil(
+				rs.getString(DataElementDaoImpl.NAME_ATTRIBUT_NAME),
+				rs.getFloat(DataElementDaoImpl.NAME_ATTRIBUT_PRICE),
+				rs.getInt(DataElementDaoImpl.NAME_ATTRIBUT_AMOUNT),
+				rs.getInt(DataElementDaoImpl.NAME_ATTRIBUT_FK_STATION_ID));	
+	}
+}

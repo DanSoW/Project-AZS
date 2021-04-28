@@ -10,9 +10,9 @@ import com.server.settings.ConnectionSettings;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-//***************************************************
+//**************************************************
 //Конфигурация базы данных
-//***************************************************
+//**************************************************
 
 @Configuration
 public class DatabaseConfig {

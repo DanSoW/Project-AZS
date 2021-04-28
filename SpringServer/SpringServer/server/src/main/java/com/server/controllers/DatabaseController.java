@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.server.database.elements.DataElementAZS;
 import com.server.database.elements.DataElementAZSFuel;
+import com.server.database.elements.DataElementCamera;
 import com.server.database.elements.DataElementOil;
+import com.server.database.requests.DataElementCameraRequest;
 import com.server.database.requests.DataElementRequestAZS;
 import com.server.database.services.DataElementServiceImpl;
 
@@ -33,6 +35,7 @@ public class DatabaseController {
 		this.dataService = dataService;
 	}
 	
+	//Маршрутизация для модуля "АЗС"
 	@PostMapping(value = "/setStation")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void insertDataElementAZS(@Valid @RequestBody DataElementRequestAZS request) throws Exception {
@@ -126,5 +129,38 @@ public class DatabaseController {
 	@GetMapping(value = "/getFuelInfo/all/")
 	public List<DataElementOil> getDataElementOilAllById(@RequestParam short id){
 		return dataService.getDataElementOilAllById(id);
+	}
+	
+	//Маршрутизация для модуля "Камера"
+	@PostMapping(value = "/addDataCamera")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void addDataElementCamera(@Valid @RequestBody DataElementCameraRequest request) {
+		List<DataElementCamera> data = dataService.getDataElementCameraAll();
+		for(DataElementCamera i : data) {
+			if(i.getNumber().equals(request.getNumber())) {
+				dataService.updateDataElementCamera(i);
+				return;
+			}
+		}
+		
+		dataService.insertDataElementCamera(
+				new DataElementCamera(request.getDate(), request.getRecognize(), request.getNumber(), request.getImage()));
+	}
+	
+	@GetMapping(value = "/getDataCamera/id")
+	public DataElementCamera getDataElementCameraByNumber(@RequestParam String number) {
+		List<DataElementCamera> data = dataService.getDataElementCameraAll();
+		for(DataElementCamera i : data) {
+			if(i.getNumber().equals(number)) {
+				return i;
+			}
+		}
+		
+		return null;
+	}
+	
+	@GetMapping(value = "/getDataCamera/all")
+	public List<DataElementCamera> getDataElementCameraAll() {
+		return dataService.getDataElementCameraAll();
 	}
 }

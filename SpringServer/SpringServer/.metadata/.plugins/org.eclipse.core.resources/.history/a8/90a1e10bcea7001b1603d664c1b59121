@@ -1,0 +1,5 @@
+package com.server.database.mappers;
+
+public class DataElementMapperCamera {
+
+}

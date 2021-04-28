@@ -1,0 +1,13 @@
+C:\Server\ApplicationCamera\ApplicationCamera\bin\Debug\ApplicationCamera.exe.config
+C:\Server\ApplicationCamera\ApplicationCamera\bin\Debug\ApplicationCamera.exe
+C:\Server\ApplicationCamera\ApplicationCamera\bin\Debug\ApplicationCamera.pdb
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.csprojAssemblyReference.cache
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.Form1.resources
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.Properties.Resources.resources
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.csproj.GenerateResource.cache
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.csproj.CoreCompileInputs.cache
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.exe
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.pdb
+C:\Server\ApplicationCamera\ApplicationCamera\bin\Debug\Newtonsoft.Json.dll
+C:\Server\ApplicationCamera\ApplicationCamera\bin\Debug\Newtonsoft.Json.xml
+C:\Server\ApplicationCamera\ApplicationCamera\obj\Debug\ApplicationCamera.csproj.CopyComplete

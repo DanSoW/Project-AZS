@@ -3,6 +3,7 @@ package com.server.database.services;
 import java.util.List;
 
 import com.server.database.elements.DataElementAZS;
+import com.server.database.elements.DataElementCamera;
 import com.server.database.elements.DataElementOil;
 
 public interface DataElementService {
@@ -15,4 +16,9 @@ public interface DataElementService {
 	List<DataElementOil> getDataElementOilAll();
 	List<DataElementOil> getDataElementOilAllById(short id);
 	public void updateDataOil(DataElementOil data);
+	
+	DataElementCamera getDataElementCameraByNumber(String number);
+	List<DataElementCamera> getDataElementCameraAll();
+	void insertDataElementCamera(DataElementCamera data);
+	void updateDataElementCamera(DataElementCamera data);
 }

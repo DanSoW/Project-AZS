@@ -3,9 +3,11 @@ package com.server.database.dao;
 import java.util.List;
 
 import com.server.database.elements.DataElementAZS;
+import com.server.database.elements.DataElementCamera;
 import com.server.database.elements.DataElementOil;
 
 public interface DataElementDao {
+	//Часть для взаимодействия с модулем "АЗС"
 	//Получение информации о АЗС по её ID
 	DataElementAZS getDataElementAZSById(short stationId);
 	
@@ -29,4 +31,11 @@ public interface DataElementDao {
 	
 	//Получение информации обо всех записях на складе топлива принадлежащих определённой АЗС
 	List<DataElementOil> getDataElementOilAllById(short id);
+	
+	
+	//Часть для взаимодействия с модулем "Камера"
+	DataElementCamera getDataElementCameraByNumber(String number);
+	List<DataElementCamera> getDataElementCameraAll();
+	void insertDataElementCamera(DataElementCamera data);
+	void updateDataElementCamera(DataElementCamera data);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.server.database.dao.DataElementDao;
 import com.server.database.elements.DataElementAZS;
+import com.server.database.elements.DataElementCamera;
 import com.server.database.elements.DataElementOil;
 
 @Primary
@@ -59,6 +60,26 @@ public class DataElementServiceImpl implements DataElementService {
 	@Override
 	public void updateDataOil(DataElementOil data) {
 		dataDao.updateDataOil(data);
+	}
+
+	@Override
+	public DataElementCamera getDataElementCameraByNumber(String number) {
+		return dataDao.getDataElementCameraByNumber(number);
+	}
+
+	@Override
+	public List<DataElementCamera> getDataElementCameraAll() {
+		return dataDao.getDataElementCameraAll();
+	}
+
+	@Override
+	public void insertDataElementCamera(DataElementCamera data) {
+		dataDao.insertDataElementCamera(data);
+	}
+
+	@Override
+	public void updateDataElementCamera(DataElementCamera data) {
+		dataDao.updateDataElementCamera(data);
 	}
 	
 }
