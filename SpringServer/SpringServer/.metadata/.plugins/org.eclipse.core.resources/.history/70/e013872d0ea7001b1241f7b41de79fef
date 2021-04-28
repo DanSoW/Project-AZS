@@ -1,0 +1,15 @@
+package com.server.database.requests;
+
+import com.sun.istack.NotNull;
+
+public class DataElementRequestOil {
+	
+	@NotNull
+	private String Name;			//название топлива
+	
+	@NotNull
+	private Float Price;			//цена топлива
+	
+	@NotNull
+	private Integer AmountOfFuel;		//количество топлива на заправке
+}

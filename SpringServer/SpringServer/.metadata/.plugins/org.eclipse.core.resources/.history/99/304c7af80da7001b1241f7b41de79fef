@@ -1,0 +1,8 @@
+package com.server.database.dao;
+
+import com.server.database.requests.DataElementRequestInformation;
+
+public interface DataElementDao {
+	DataElementRequestInformation getDataElementAZSById(short stationId);
+	void insertDataAZS(DataElementRequestInformation dataElementAZS);
+}

@@ -1,0 +1,23 @@
+package com.server.database.requests;
+
+import java.util.List;
+
+import com.server.database.elements.DataElementOil;
+import com.sun.istack.NotNull;
+
+//**************************************
+//Входные данные, которые поступают на серверную часть в формате JSON
+//***************************************
+
+public class DataElementAZS {
+
+	@NotNull
+	private String Address;					//адрес местонахождения заправочной станции
+	
+	@NotNull
+	private Short Station_ID;				//уникальный идентификатор заправочной станции (от 1 до 99)	
+	
+	@NotNull
+	private List<DataElementOil> data;		//данные о заправочной станции
+	
+}

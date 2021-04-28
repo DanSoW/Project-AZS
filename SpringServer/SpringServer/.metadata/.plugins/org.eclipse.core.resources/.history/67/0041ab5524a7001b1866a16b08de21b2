@@ -1,0 +1,16 @@
+package com.server.database.requests;
+
+import com.sun.istack.NotNull;
+
+public class DataRequest {
+	@NotNull
+	private String address;
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+}

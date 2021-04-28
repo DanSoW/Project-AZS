@@ -1,0 +1,37 @@
+package com.server.database.elements;
+
+//********************************************
+//Информация о топливе
+//********************************************
+
+public class DataElementOil {
+	private String name;			//название топлива
+	private float price;			//цена топлива
+	private int amountOfFeel;		//количество топлива на заправке
+	
+	public DataElementOil(String name, float price, int amountOfFeel) {
+		this.name = name;
+		this.price = price;
+		this.amountOfFeel = amountOfFeel;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public int getAmountOfFeel() {
+		return amountOfFeel;
+	}
+	public void setAmountOfFeel(int amountOfFeel) {
+		this.amountOfFeel = amountOfFeel;
+	}
+	
+}

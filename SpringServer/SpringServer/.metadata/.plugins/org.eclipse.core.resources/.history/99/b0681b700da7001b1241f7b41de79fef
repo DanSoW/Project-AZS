@@ -1,0 +1,40 @@
+package com.server.database.elements;
+
+import java.util.List;
+
+//**************************************
+//Единици данных для таблицы заправок
+//***************************************
+
+public class DataElementAZS {
+
+	private String Address;					//адрес местонахождения заправочной станции
+	private short Station_ID;				//уникальный идентификатор заправочной станции (от 1 до 99)	
+	private List<DataElementOil> data;		//данные о заправочной станции
+	
+	
+	public DataElementAZS(String address, short station_ID, List<DataElementOil> data) {
+		Address = address;
+		Station_ID = station_ID;
+		this.data = data;
+	}
+	
+	public String getAddress() {
+		return Address;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public short getStation_ID() {
+		return Station_ID;
+	}
+	public void setStation_ID(short station_ID) {
+		Station_ID = station_ID;
+	}
+	public List<DataElementOil> getData() {
+		return data;
+	}
+	public void setData(List<DataElementOil> data) {
+		this.data = data;
+	}
+}

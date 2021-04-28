@@ -1,0 +1,33 @@
+package com.server.controllers;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.server.database.requests.DataElementRequestAZS;
+import com.server.database.services.DataElementServiceImpl;
+
+@RestController
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+public class DatabaseController {
+
+	DataElementServiceImpl dataService;
+	
+	@Autowired
+	public DatabaseController(DataElementServiceImpl dataService) {
+		this.dataService = dataService;
+	}
+	
+	@PostMapping(value = "/setStation")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void insertDataElementAZS(@Valid @RequestBody DataElementRequestAZS request) throws Exception {
+		
+	}
+}

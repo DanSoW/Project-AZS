@@ -1,0 +1,156 @@
+package com.server.database.dao;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.server.database.elements.DataElementAZS;
+import com.server.database.elements.DataElementOil;
+import com.server.database.mappers.DataElementMapperAZS;
+import com.server.database.mappers.DataElementMapperOil;
+
+@Repository
+public class DataElementDaoImpl implements DataElementDao {
+	
+	public static final String NAME_TABLE_AZS = "TableAZS";
+	public static final String NAME_ATTRIBUT_ADDRESS = "Address";
+	public static final String NAME_ATTRIBUT_STATION_ID = "Station_ID";
+	public static final String SQL_COMMAND_CREATE_AZS_TABLE = "CREATE TABLE IF NOT EXISTS " + NAME_TABLE_AZS + " ("
+			+ NAME_ATTRIBUT_ADDRESS + " VARCHAR(255), " + NAME_ATTRIBUT_STATION_ID + " SMALLINT PRIMARY KEY);";
+	
+	public static final String NAME_TABLE_OIL = "TableOil";
+	public static final String NAME_ATTRIBUT_NAME = "Name";
+	public static final String NAME_ATTRIBUT_PRICE = "Price";
+	public static final String NAME_ATTRIBUT_AMOUNT = "AmountOfFuel";
+	public static final String NAME_ATTRIBUT_FK_STATION_ID = "fkStationId";
+	
+	private static final String SQL_COMMAND_CREATE_OIL_TABLE = "CREATE TABLE IF NOT EXISTS " + NAME_TABLE_OIL + " ("
+			+ NAME_ATTRIBUT_NAME + " VARCHAR(10), " + NAME_ATTRIBUT_PRICE + " FLOAT, " + NAME_ATTRIBUT_AMOUNT + " INT, "
+			+ NAME_ATTRIBUT_FK_STATION_ID + " SMALLINT, FOREIGN KEY (" + NAME_ATTRIBUT_FK_STATION_ID + ") REFERENCES " + NAME_TABLE_AZS + " (" + NAME_ATTRIBUT_STATION_ID + "));";
+	
+	private static final String SQL_COMMAND_INSERT_AZS = "INSERT INTO " + NAME_TABLE_AZS + " (" + NAME_ATTRIBUT_ADDRESS + ", " + NAME_ATTRIBUT_STATION_ID + ") VALUES ("
+			+ ":" + NAME_ATTRIBUT_ADDRESS + ", " + ":" + NAME_ATTRIBUT_STATION_ID + ");";
+	
+	private static final String SQL_COMMAND_SELECT_AZS = "SELECT * FROM " + NAME_TABLE_AZS;
+	
+	private static final String SQL_COMMAND_INSERT_OIL = "INSERT INTO " + NAME_TABLE_OIL + " (" + NAME_ATTRIBUT_NAME + ", " + NAME_ATTRIBUT_PRICE + ", " + NAME_ATTRIBUT_AMOUNT + ", " + NAME_ATTRIBUT_FK_STATION_ID + ") "
+			+ "VALUES (" + ":" + NAME_ATTRIBUT_NAME + ", :" + NAME_ATTRIBUT_PRICE + ", :" + NAME_ATTRIBUT_AMOUNT + ", :" + NAME_ATTRIBUT_FK_STATION_ID + ");";
+	
+	private static final String SQL_COMMAND_SELECT_OIL = "SELECT * FROM " + NAME_TABLE_OIL;
+	
+	private static final String SQL_COMMAND_SELECT_OIL_BY_ID = "SELECT * FROM " + NAME_TABLE_OIL + " WHERE " + NAME_ATTRIBUT_FK_STATION_ID + "=:" + NAME_ATTRIBUT_FK_STATION_ID + ";";
+	
+	private static final String SQL_COMMAND_UPDATE_OIL = "UPDATE " + NAME_TABLE_OIL + " SET " + NAME_ATTRIBUT_PRICE + "=:" + NAME_ATTRIBUT_PRICE + ", "
+			+ NAME_ATTRIBUT_AMOUNT + "=:" + NAME_ATTRIBUT_AMOUNT + " WHERE " + "NAME_ATTRIBUT_NAME" + "=:" + NAME_ATTRIBUT_NAME + " AND " + NAME_ATTRIBUT_FK_STATION_ID + "=:" + NAME_ATTRIBUT_FK_STATION_ID + ";";
+	
+	
+	private final DataElementMapperAZS dataMapperAZS;
+	private final DataElementMapperOil dataMapperOil;
+	private final NamedParameterJdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	public DataElementDaoImpl(
+			DataElementMapperAZS dataMapperAZS,
+			DataElementMapperOil dataMapperOil,
+			NamedParameterJdbcTemplate jTempl
+			) {
+
+		this.dataMapperAZS = dataMapperAZS;
+		this.dataMapperOil = dataMapperOil;
+		this.jdbcTemplate = jTempl;
+		
+		//Создание таблицы для хранения уникальной информации о заправочной станции
+		this.jdbcTemplate.execute(SQL_COMMAND_CREATE_AZS_TABLE, new PreparedStatementCallback<Object>() {
+			@Override
+			public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+				ps.execute();
+				return null;
+			}
+		});
+
+		//Создание таблицы для хранения данных о топливе и принадлежности данного топлива определённой АЗС
+		this.jdbcTemplate.execute(SQL_COMMAND_CREATE_OIL_TABLE, new PreparedStatementCallback<Object>() {
+		@Override
+		public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+				ps.execute();
+				return null;
+			}
+		});
+	}
+
+	@Override
+	public void insertDataAZS(DataElementAZS dataElementAZS) {
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue(NAME_ATTRIBUT_ADDRESS, dataElementAZS.getAddress());
+		params.addValue(NAME_ATTRIBUT_STATION_ID, dataElementAZS.getStation_Id());
+		
+		jdbcTemplate.update(SQL_COMMAND_INSERT_AZS, params);
+	}
+	
+	@Override
+	public DataElementAZS getDataElementAZSById(short stationId) {
+		List<DataElementAZS> list = jdbcTemplate.query(SQL_COMMAND_SELECT_AZS, dataMapperAZS);
+		for(DataElementAZS i : list)
+			if(i.getStation_Id() == stationId) {
+				return i;
+			}
+		return null;
+	}
+
+	@Override
+	public List<DataElementAZS> getDataElementAZSALL() {
+		return jdbcTemplate.query(SQL_COMMAND_SELECT_AZS, dataMapperAZS);
+	}
+
+	@Override
+	public DataElementOil getDataElementOilByID(short stationId) {
+		List<DataElementOil> list = jdbcTemplate.query(SQL_COMMAND_SELECT_OIL, dataMapperOil);
+		for(DataElementOil i : list)
+			if(i.getFkIdStation() == stationId) {
+				return i;
+			}
+		return null;
+	}
+
+	@Override
+	public void insertDataOil(DataElementOil dataElementOil) {
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue(NAME_ATTRIBUT_NAME, dataElementOil.getName());
+		params.addValue(NAME_ATTRIBUT_PRICE, dataElementOil.getPrice());
+		params.addValue(NAME_ATTRIBUT_AMOUNT, dataElementOil.getAmountOfFuel());
+		params.addValue(NAME_ATTRIBUT_FK_STATION_ID, dataElementOil.getFkIdStation());
+		
+		jdbcTemplate.update(SQL_COMMAND_INSERT_OIL, params);
+	}
+
+	@Override
+	public List<DataElementOil> getDataElementOilAll() {
+		return jdbcTemplate.query(SQL_COMMAND_SELECT_OIL, dataMapperOil);
+	}
+
+	@Override
+	public List<DataElementOil> getDataElementOilAllById(short id) {
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue(NAME_ATTRIBUT_FK_STATION_ID, id);
+		return jdbcTemplate.query(SQL_COMMAND_SELECT_OIL_BY_ID, params, dataMapperOil);
+	}
+
+	@Override
+	public void updateDataOil(DataElementOil dataElementOil) {
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue(NAME_ATTRIBUT_NAME, dataElementOil.getName());
+		params.addValue(NAME_ATTRIBUT_PRICE, dataElementOil.getPrice());
+		params.addValue(NAME_ATTRIBUT_AMOUNT, dataElementOil.getAmountOfFuel());
+		params.addValue(NAME_ATTRIBUT_FK_STATION_ID, dataElementOil.getFkIdStation());
+		
+		jdbcTemplate.update(SQL_COMMAND_UPDATE_OIL, params);
+	}
+}

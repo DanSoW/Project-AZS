@@ -1,0 +1,26 @@
+package com.server.database.dao;
+
+import java.util.List;
+
+import com.server.database.elements.DataElementAZS;
+import com.server.database.elements.DataElementOil;
+
+public interface DataElementDao {
+	//Получение информации о АЗС по её ID
+	DataElementAZS getDataElementAZSById(short stationId);
+	
+	//Добавление информации о АЗС
+	void insertDataAZS(DataElementAZS dataElementAZS);
+	
+	//Получение всей информации о АЗС
+	List<DataElementAZS> getDataElementAZSALL();
+	
+	//Получение информации об одной конкретной записи на складе топлива
+	DataElementOil getDataElementOilByID(short stationId);
+	
+	//Долбавление информации об одной записи на складе топлива
+	void insertDataOil(DataElementOil dataElementOil);
+	
+	//Получение информации обо всех записях на складе топлива
+	List<DataElementOil> getDataElementOilAll();
+}

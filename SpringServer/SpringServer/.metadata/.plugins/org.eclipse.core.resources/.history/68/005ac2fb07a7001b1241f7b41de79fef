@@ -1,0 +1,14 @@
+package com.service.database.mappers;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+
+import com.server.database.dao.DataElementDaoImpl;
+import com.server.database.elements.DataElementInvoices;
+
+public class DataElementMapper extends RowMapper<DataElementOil>{
+
+}

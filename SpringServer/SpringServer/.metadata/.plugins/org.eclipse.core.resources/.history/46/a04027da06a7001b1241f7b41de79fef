@@ -1,0 +1,12 @@
+package com.server.database.elements;
+
+//********************************************
+//Информация о топливе
+//********************************************
+
+public class DataElementOil {
+	private String name;			//название топлива
+	private float price;			//цена топлива
+	private int amountOfFeel;		//количество топлива на заправке
+	
+}

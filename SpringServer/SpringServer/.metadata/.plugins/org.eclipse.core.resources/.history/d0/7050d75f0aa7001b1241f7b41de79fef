@@ -1,0 +1,11 @@
+package com.server.database.dao;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.server.database.elements.DataElementAZS;
+
+public interface DataElementDao {
+	DataElementAZS getDataElementAZSById(short stationId);
+	void insertDataAZS(DataElementAZS dataElementAZS);
+}

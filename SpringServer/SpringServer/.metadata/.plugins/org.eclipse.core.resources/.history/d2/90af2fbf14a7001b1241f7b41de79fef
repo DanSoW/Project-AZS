@@ -1,0 +1,6 @@
+package com.server.controllers;
+
+@RestController
+public class DatabaseController {
+
+}

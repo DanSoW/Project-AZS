@@ -1,0 +1,13 @@
+C:\Server\ApplicationAZS\ApplicationAZS\bin\Debug\ApplicationAZS.exe.config
+C:\Server\ApplicationAZS\ApplicationAZS\bin\Debug\ApplicationAZS.exe
+C:\Server\ApplicationAZS\ApplicationAZS\bin\Debug\ApplicationAZS.pdb
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.csprojAssemblyReference.cache
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.Properties.Resources.resources
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.csproj.GenerateResource.cache
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.csproj.CoreCompileInputs.cache
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.exe
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.pdb
+C:\Server\ApplicationAZS\ApplicationAZS\bin\Debug\Newtonsoft.Json.dll
+C:\Server\ApplicationAZS\ApplicationAZS\bin\Debug\Newtonsoft.Json.xml
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.csproj.CopyComplete
+C:\Server\ApplicationAZS\ApplicationAZS\obj\Debug\ApplicationAZS.Form1.resources

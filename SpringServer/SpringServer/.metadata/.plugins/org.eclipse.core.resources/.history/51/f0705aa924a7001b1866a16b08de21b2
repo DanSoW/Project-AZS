@@ -1,0 +1,88 @@
+package com.server.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.server.database.elements.DataElementAZS;
+import com.server.database.elements.DataElementOil;
+import com.server.database.requests.DataElementRequestAZS;
+import com.server.database.requests.DataRequest;
+import com.server.database.services.DataElementServiceImpl;
+
+@RestController
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+public class DatabaseController {
+
+	DataElementServiceImpl dataService;
+	
+	@Autowired
+	public DatabaseController(DataElementServiceImpl dataService) {
+		this.dataService = dataService;
+	}
+	
+	@PostMapping(value = "/setStation")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void insertDataElementAZS(@Valid @RequestBody DataElementRequestAZS request) throws Exception {
+		dataService.insertDataAZS(
+				new DataElementAZS(request.getAddress(), request.getStation_ID()));
+		List<DataElementOil> list = request.getData();
+		
+		for(DataElementOil i : list) {
+			dataService.insertDataOil(i);
+		}
+	}
+	
+	@GetMapping(value = "/getStationInfo")
+	public DataElementAZS getDataElementAZSById(@RequestParam short id) {
+		return dataService.getDataElementAZSById(id);
+	}
+	
+	private boolean validFuelType(String fuelType) {
+		String[] types = new String[] {
+				"92", "95", "98", "DT"
+		};
+		
+		for(String i : types) {
+			if(i.equals(fuelType))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	@GetMapping(value = "/stations")
+	public List<DataElementAZS> getListAZS(@RequestParam String fuel) throws Exception{
+		if(!validFuelType(fuel))
+			throw new Exception("Ошибка! Тип топлива должен быть 92, 95, 98 или DT!");
+		List<DataElementAZS> listAZS = dataService.getDataElementAZSALL();
+		List<DataElementOil> listOil = dataService.getDataElementOilAll();
+		
+		List<DataElementAZS> result = new ArrayList<DataElementAZS>();
+		
+		for(int i = 0; i < listOil.size(); i++) {
+			if(listOil.get(i).getName().equals(fuel)) {
+				for(int j = 0; j < listAZS.size(); i++) {
+					if(listAZS.get(j).getStation_Id() == listOil.get(i).getFkIdStation()) {
+						result.add(listAZS.get(j));
+						break;
+					}
+				}
+			}
+		}
+		
+		return result;
+	}
+}

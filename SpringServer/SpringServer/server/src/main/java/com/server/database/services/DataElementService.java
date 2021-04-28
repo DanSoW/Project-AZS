@@ -1,0 +1,18 @@
+package com.server.database.services;
+
+import java.util.List;
+
+import com.server.database.elements.DataElementAZS;
+import com.server.database.elements.DataElementOil;
+
+public interface DataElementService {
+	DataElementAZS getDataElementAZSById(short stationId);
+	void insertDataAZS(DataElementAZS dataElementAZS);
+	List<DataElementAZS> getDataElementAZSALL();
+		
+	DataElementOil getDataElementOilByID(short stationId);
+	void insertDataOil(DataElementOil dataElementOil);
+	List<DataElementOil> getDataElementOilAll();
+	List<DataElementOil> getDataElementOilAllById(short id);
+	public void updateDataOil(DataElementOil data);
+}

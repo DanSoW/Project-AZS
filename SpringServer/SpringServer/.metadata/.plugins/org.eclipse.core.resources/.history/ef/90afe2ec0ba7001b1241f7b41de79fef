@@ -1,0 +1,63 @@
+package com.server.database.dao;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.server.database.elements.DataElementAZS;
+import com.service.database.mappers.DataElementMapperOil;
+
+@Repository
+public class DataElementDaoImpl implements DataElementDao {
+	
+	private static final String NAME_TABLE_AZS = "TableAZS";
+	private static final String NAME_ATTRIBUT_ADDRESS = "Address";
+	private static final String NAME_ATTRIBUT_STATION_ID = "Station_ID";
+	private static final String SQL_COMMAND_CREATE_AZS_TABLE = "CREATE TABLE " + NAME_TABLE_AZS + " ("
+			+ NAME_ATTRIBUT_ADDRESS + " VARCHAR(255), " + NAME_ATTRIBUT_STATION_ID + " SMALLINT PRIMARY KEY);";
+	
+	
+	private final DataElementMapperOil dataMapperOil;
+	private final NamedParameterJdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	public DataElementDaoImpl(
+			DataElementMapperOil dataMapperOil,
+			NamedParameterJdbcTemplate jTempl
+			) {
+
+		this.dataMapperOil = dataMapperOil;
+		this.jdbcTemplate = jTempl;
+		
+		this.jdbcTemplate.execute(SQL_COMMAND_CREATE_AZS_TABLE, new PreparedStatementCallback() {
+			@Override
+			public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+				ps.execute();
+				return null;
+			}
+			
+		});
+
+	}
+
+	@Override
+	public DataElementAZS getDataElementAZSById(short stationId) {
+		
+		return null;
+	}
+
+	@Override
+	public void insertDataAZS(DataElementAZS dataElementAZS) {
+		
+	}
+}

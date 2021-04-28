@@ -1,0 +1,74 @@
+package com.server.database.dao;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.server.database.elements.DataElementAZS;
+import com.service.database.mappers.DataElementMapperOil;
+
+@Repository
+public class DataElementDaoImpl implements DataElementDao {
+	
+	private static final String NAME_TABLE_AZS = "TableAZS";
+	private static final String NAME_ATTRIBUT_ADDRESS = "Address";
+	private static final String NAME_ATTRIBUT_STATION_ID = "Station_ID";
+	private static final String NAME_ATTRIBUT_ID = "ID";
+	private static final String SQL_COMMAND_CREATE_AZS_TABLE = "CREATE TABLE " + NAME_TABLE_AZS + " ("
+			+ NAME_ATTRIBUT_ADDRESS + " VARCHAR(255), " + NAME_ATTRIBUT_STATION_ID + " SMALLINT, "
+			+ NAME_ATTRIBUT_ID + " INT PRIMARY KEY);";
+	
+	private static final String NAME_TABLE_OIL = "TableOil";
+	private static final String NAME_ATTRIBUT_NAME = "Name";
+	private static final String NAME_ATTRIBUT_PRICE = "Price";
+	private static final String NAME_ATTRIBUT_AMOUNT = "AmountOfFuel";
+	private static final String NAME_ATTRIBUT_FK_ID = "fkId";
+	
+	private static final String SQL_COMMAND_CREATE_OIL_TABLE = "CREATE TABLE " + NAME_TABLE_OIL + " ("
+			+ NAME_ATTRIBUT_NAME + " VARCHAR(10), " + NAME_ATTRIBUT_PRICE + " FLOAT, " + NAME_ATTRIBUT_AMOUNT + " INT, "
+			+ NAME_ATTRIBUT_FK_ID + " INT, FOREIGN KEY (" + NAME_ATTRIBUT_FK_ID + ") REFERENCES " + NAME_TABLE_AZS + "(" + NAME_ATTRIBUT_ID + ");";
+	
+	
+	
+	private final DataElementMapperOil dataMapperOil;
+	private final NamedParameterJdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	public DataElementDaoImpl(
+			DataElementMapperOil dataMapperOil,
+			NamedParameterJdbcTemplate jTempl
+			) {
+
+		this.dataMapperOil = dataMapperOil;
+		this.jdbcTemplate = jTempl;
+		
+		//Создание таблицы для хранения уникальной информации о заправочной станции
+		this.jdbcTemplate.execute(SQL_COMMAND_CREATE_AZS_TABLE, new PreparedStatementCallback<Object>() {
+			@Override
+			public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+				ps.execute();
+				return null;
+			}
+		});
+
+	}
+
+	@Override
+	public DataElementAZS getDataElementAZSById(short stationId) {
+	}
+
+	@Override
+	public void insertDataAZS(DataElementAZS dataElementAZS) {
+		
+	}
+}
